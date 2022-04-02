@@ -63,7 +63,90 @@ create table problem(
 
 通过id查看一个题目的具体信息，这时候要查询所有的信息让后分装实体类返回给前端
 
-# 编译运行模块
+## 前后端交互分析
+
+主要是下面三个
+
+### 获取题目列表
+
+力扣中获取题目的方式有两种，一个是按页面查找，50个一页，其次是按照标签或者名字或者ID查找，这里我们只考虑全查找和id查找，使用动态SQL实现
+
+### 获取题目详情
+
+前端需要向后端传入一个合法的id
+
+### 提交代码到服务器
+
+前端向后端传递的需要有题目的id以及代码
+
+代码格式如下
+
+```java
+class Solution {
+    public int maxArea(int[] height) {
+        int left=0,right=height.length-1;
+        int maxWater=0,nowWater,h;
+        while(left<right){
+            h=height[left]>height[right]?height[right]:height[left];
+            nowWater=h*(right-left);
+            maxWater=maxWater>nowWater?maxWater:nowWater;
+            if(height[left]>height[right]){
+                --right;
+            }
+            else{
+                ++left;
+            }
+        }
+        return maxWater;
+    }
+}
+```
+
+那么需要怎么构造完整的代码进行编译执行
+
+这里有一个解决方案
+
+```java
+class Solution {
+    public int maxArea(int[] height) {
+        int left=0,right=height.length-1;
+        int maxWater=0,nowWater,h;
+        while(left<right){
+            h=height[left]>height[right]?height[right]:height[left];
+            nowWater=h*(right-left);
+            maxWater=maxWater>nowWater?maxWater:nowWater;
+            if(height[left]>height[right]){
+                --right;
+            }
+            else{
+                ++left;
+            }
+        }
+        return maxWater;
+    }
+    public static void main(String[] args){
+        Solution s=new Solution();
+        //base1
+        s.maxArea(height1);
+        //base2
+        s.maxArea(height2);
+    }
+}
+```
+
+这样就构造了一个完整的代码？
+
+如何实现？
+
+我们只需要找到提交代码最后一个'}'，然后将main方法嵌入其中，得到最终的代码。
+
+然后将代码交给编译运行模块处理
+
+### 服务器返回运行结果
+
+对编译运行处理得到的编译错误或者结果进行处理返回
+
+## 编译运行模块
 
 在初学java是通过`javac`编译文件，通过`java`执行文件
 
