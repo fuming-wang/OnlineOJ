@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.onlineoj.dao.ProblemMapper">
+    <resultMap id="BaseMapResult" type="com.example.onlineoj.model.Problem">
+        <id column="id" property="id"/>
+        <id column="title" property="title"/>
+        <id column="level" property="level"/>
+        <id column="description" property="description"/>
+        <id column="templateCode" property="templateCode"/>
+        <id column="testCode" property="testCode"/>
+    </resultMap>
+    <insert id="add">
+        insert into problem (title,level,description,templateCode,testCode)
+        values (#{title},#{level},#{description},#{templateCode},#{testCode})
+    </insert>
+    <select id="selectOne" resultType="com.example.onlineoj.model.Problem">
+        select id,title,level,description from problem where id=#{id}
+    </select>
+    <select id="selectAll" resultType="com.example.onlineoj.model.Problem">
+        select id,title,level from problem
+    </select>
+</mapper>

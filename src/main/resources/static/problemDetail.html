@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>我的 OJ 平台</title>
+        <meta name="description" content="Charcoal is a free Bootstrap 4 UI kit build by @attacomsian at Wired Dots." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--Bootstrap 4-->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top sticky-navigation">
+            <a class="navbar-brand font-weight-bold" href="#">我的 OJ 系统</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topMenu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="topMenu">
+                <ul class="navbar-nav ml-auto">
+                </ul>
+            </div>
+        </nav>
+
+        <!--hero section-->
+        <section class="bg-hero">
+            <div class="container">
+                <div class="row vh-100">
+                    <div class="col-sm-12 my-auto text-center">
+                        <h1>我的 OJ 平台</h1>
+                        <p class="lead text-capitalize my-4">
+                            基于 Java Sevlet 实现的 OJ 系统. 
+                        </p>
+                        <a href="https://gitee.com" class="btn btn-outline-light btn-radius btn-lg">项目链接</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--components-->
+        <section class="my-5 pt-5">
+            <div class="container">
+                <div class="row mt-4">
+                    <div class="col-sm-12 pb-4">
+                        <div class="jumbotron jumbotron-fluid">
+                            <div class="container" id="problemDesc">
+                                <!-- <h1>Container fluid size jumbotron</h1>
+                                <p>Think BIG with a Bootstrap Jumbotron!</p> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-sm-12 pb-4">
+                        <div class="form-group">
+                            <label for="codeEditor">代码编辑框</label>
+                            <div id="editor" style="min-height:400px">
+                                <textarea class="form-control" id="codeEditor" style="width: 100%; height: 400px;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-primary" id="submitButton">提交</button>
+
+                <div class="row mt-4">
+                    <div class="col-sm-12 pb-4">
+                        <div class="jumbotron jumbotron-fluid">
+                            <div class="container">
+                                <pre id="problemResult">
+
+                                </pre>
+                                <!-- <h1>Container fluid size jumbotron</h1>
+                                <p>Think BIG with a Bootstrap Jumbotron!</p> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--footer-->
+        <section class="py-5 bg-dark">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-xs-12 text-center">
+                        <!-- <h3>Upgrade to Pro Version</h3>
+                        <p class="pt-2">
+                            We are working on <b>Charcoal Pro</b> which will be released soon. The pro version 
+                            will have a lot more components, sections, icons, plugins and example pages. 
+                            Join the waiting list to get notified when we release it (plus discount code).
+                        </p>
+                        <a class="btn btn-warning" href="https://wireddots.com/newsletter">Join Waiting List</a>
+                        <hr class="my-5"/> -->
+                        <p class="pt-2 text-muted">
+                            &copy; by 汤老湿
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <script src="js/app.js"></script>
+        <!-- 引入 ace.js -->
+        <script src="https://cdn.bootcdn.net/ajax/libs/ace/1.2.9/ace.js"></script>
+        <script src="https://cdn.bootcdn.net/ajax/libs/ace/1.2.9/ext-language_tools.js"></script>
+        <script>
+            console.log(location.search); 
+
+            function initAce() {
+                // 参数 editor 就对应到刚才在 html 里加的那个 div 的 id
+                let editor = ace.edit("editor");
+                editor.setOptions({
+                    enableBasicAutocompletion: true,
+                    enableSnippets: true,
+                    enableLiveAutocompletion: true
+                });
+                editor.setTheme("ace/theme/twilight");
+                editor.session.setMode("ace/mode/java");
+                editor.resize();
+                document.getElementById('editor').style.fontSize = '20px';
+
+                return editor;
+            }
+
+            let editor = initAce();
+
+            // 通过 ajax 从服务器获取到题目的详情
+            function getProblem() {
+                // 1. 通过 ajax 给服务器发送一个请求
+                $.ajax({
+                    url: "problem" + location.search,
+                    type: "GET",
+                    success: function (data, status) {
+                        makeProblemDetail(data);
+                    }
+                })
+            }
+
+            function makeProblemDetail(problem) {
+                // 1. 获取到 problemDesc, 把题目详情填写进去
+                let problemDesc = document.querySelector("#problemDesc");
+
+                let h3 = document.createElement("h3");
+                h3.innerHTML = problem.id + "." + problem.title + "_" + problem.level
+                problemDesc.appendChild(h3);
+
+                let pre = document.createElement("pre");
+                let p = document.createElement("p");
+                p.innerHTML = problem.description;
+                pre.appendChild(p);
+                problemDesc.appendChild(pre);
+
+                // 2. 把代码的模板填写到编辑框中. 
+                // let codeEditor = document.querySelector("#codeEditor");
+                // codeEditor.innerHTML = problem.templateCode;
+                editor.setValue(problem.templateCode)
+
+                // 3. 给提交按钮注册一个点击事件
+                let submitButton = document.querySelector("#submitButton");
+                submitButton.onclick = function () {
+                    // 点击这个按钮, 就要进行提交. (把编辑框的内容给提交到服务器上)
+                    let body = {
+                        id: problem.id,
+                        // code: codeEditor.value,
+                        code: editor.getValue(),
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "compile",
+                        data: JSON.stringify(body),
+                        success: function (data, status) {
+                            let problemResult = document.querySelector("#problemResult");
+                            if (data.error == 0) {
+                                // 编译运行没有问题, 把 stdout 显示到页面中
+                                problemResult.innerHTML = data.stdout;
+                            } else {
+                                // 编译运行没有问题, 把 reason 显示到页面中
+                                problemResult.innerHTML = data.reason;
+                            }
+                        }
+                    });
+                }
+            }
+
+            getProblem();
+        </script>
+    </body>
+</html>
