@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>我的 OJ 平台</title>
+        <title>Minria OJ 平台</title>
         <meta name="description" content="Charcoal is a free Bootstrap 4 UI kit build by @attacomsian at Wired Dots." />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--Bootstrap 4-->
@@ -11,7 +11,7 @@
     <body>
 
         <nav class="navbar navbar-expand-md navbar-dark fixed-top sticky-navigation">
-            <a class="navbar-brand font-weight-bold" href="#">我的 OJ 系统</a>
+            <a class="navbar-brand font-weight-bold" href="#">Minria OJ 系统</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topMenu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -27,11 +27,11 @@
             <div class="container">
                 <div class="row vh-100">
                     <div class="col-sm-12 my-auto text-center">
-                        <h1>我的 OJ 平台</h1>
+                        <h1>Minria的 OJ 平台</h1>
                         <p class="lead text-capitalize my-4">
-                            基于 Java Sevlet 实现的 OJ 系统. 
+                            基于 Java SSM 框架实现的在线OJ平台 
                         </p>
-                        <a href="https://gitee.com" class="btn btn-outline-light btn-radius btn-lg">项目链接</a>
+                        <a href="https://github.com/Minria/OnlineOJ" class="btn btn-outline-light btn-radius btn-lg">项目链接</a>
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@
                         <a class="btn btn-warning" href="https://wireddots.com/newsletter">Join Waiting List</a>
                         <hr class="my-5"/> -->
                         <p class="pt-2 text-muted">
-                            &copy; by 汤老湿
+                            &copy; by 汪福明
                         </p>
                     </div>
                 </div>
@@ -173,6 +173,7 @@
                         type: "POST",
                         url: "compile",
                         data: JSON.stringify(body),
+                        contentType:'application/json',
                         success: function (data, status) {
                             let problemResult = document.querySelector("#problemResult");
                             if (data.error == 0) {
@@ -186,7 +187,6 @@
                     });
                 }
             }
-
             getProblem();
         </script>
     </body>
