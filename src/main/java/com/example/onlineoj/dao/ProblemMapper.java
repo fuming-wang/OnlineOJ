@@ -10,4 +10,7 @@ public interface ProblemMapper {
     int add(Problem problem);
     Problem selectOne(int id);
     List<Problem> selectAll();
+    //对内测试接口
+    Problem selectOneInDetail(int id);
+    int update(String code,int id);
 }

@@ -7,8 +7,6 @@ import java.io.*;
 
 @Component
 public class Command {
-
-
     public int run(String cmd,String stdoutFile,String stderrFile){
         try {
             Process process=Runtime.getRuntime().exec(cmd);

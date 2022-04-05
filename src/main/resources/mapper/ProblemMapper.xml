@@ -14,9 +14,12 @@
         values (#{title},#{level},#{description},#{templateCode},#{testCode})
     </insert>
     <select id="selectOne" resultType="com.example.onlineoj.model.Problem">
-        select id,title,level,description from problem where id=#{id}
+        select id,title,level,description,templateCode from problem where id=#{id}
     </select>
     <select id="selectAll" resultType="com.example.onlineoj.model.Problem">
         select id,title,level from problem
+    </select>
+    <select id="selectOneInDetail" resultType="com.example.onlineoj.model.Problem">
+        select * from problem where id = #{id};
     </select>
 </mapper>

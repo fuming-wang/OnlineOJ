@@ -58,10 +58,12 @@ public class ProblemController {
             Answer answer = task.run(question);
             System.out.println(answer);
             compileResponse.error = answer.getError();
-            compileResponse.reason = answer.getReason();
-            compileResponse.stdout = answer.getStdout();
-            if(compileResponse.reason==null){
-                compileResponse.reason= answer.getStderr();
+            if(compileResponse.error==0){
+                compileResponse.stdout=answer.getStdout();
+            }else if(compileResponse.error==1){
+                compileResponse.reason=answer.getCompileErr();
+            }else{
+                compileResponse.reason=answer.getStderr();
             }
         } catch (Exception e) {
             e.printStackTrace();
