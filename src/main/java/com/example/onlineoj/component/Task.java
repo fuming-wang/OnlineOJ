@@ -34,11 +34,15 @@ public class Task {
     public Answer run(Question question){
         Answer answer=new Answer();
         File file=new File(WORK_DIR);
-        boolean create=file.mkdirs();
-        if(!create){
-            answer.setError(1);
-            answer.setCompileErr("文件操作异常");
-            return answer;
+        if(!file.exists()){
+            boolean create=file.mkdirs();
+            if(!create){
+                answer.setError(1);
+                answer.setCompileErr("文件操作异常");
+                return answer;
+            }else{
+                return null;
+            }
         }
         fileUtil.writeFile(CODE, question.getCode());
         String compileCmd=String.format("javac -encoding utf8 %s -d %s", CODE, WORK_DIR);
