@@ -1,14 +1,26 @@
-核心功能
+# 项目介绍
 
-能够管理题目：保存很多题目信息（后端）
+## 背景介绍
 
-题目列表页：展示题目列表（前端）
+算法是程序设计中不可缺少的一部分，不少从业者都需要学习算法，国际上最知名的算法刷题平台是力扣，本项目将仿造力扣实现在线编程判断正误。
 
-题目详情页：题目信息+代码编辑框（前端）
+## 项目模块
 
-提交并运行（后端）
+![20220404193716](pitcure/20220404193716.png)
 
-查看运行结果（前端）
+打开力扣发现里面有很多的功能，学习、编程、面试应有尽有。
+
+本项目是为了实现力扣的核心功能，所以需要从下面几个地方进行分析
+
+**管理题目**：保存很多题目信息（后端：对数据库的操作）
+
+**题目列表**：展示题目列表（前端：接受后端来的字符串进行操作）
+
+**题目详情**：题目信息+代码编辑框（前端：对前端的字符串进行处理操作）
+
+**提交并运行**：（后端：对前端传来的字符串进行写入文件，编译运行操作）
+
+**查看运行结果**（前端）
 
 # 功能分析
 
@@ -16,7 +28,7 @@
 
 分析：
 
-这个项目是一个在线OJ系统，那么就需要仿造当前最知名的OJ平台-LeetCode
+这个项目是一个在线OJ系统，那么就需要仿造当前最知名的OJ平台LeetCode
 
 打开力扣题目界面
 
@@ -57,11 +69,27 @@ create table problem(
 
 题目列表的显示信息主要是：id，名字，难度
 
+> 小提示
+>
+> 后端对数据库的操作应该是选择
+>
+> ```sql
+> select id,title,level from problem;
+> ```
+>
+> 不应该是
+>
+> ```sql
+> select * from problem;
+> ```
+>
+> 因为我们只需要上面三个信息，多查询的描述以及代码接口也会占用带宽，并且会给数据库带来较大的压力
+
 对数据库操作将三个信息加入实体类，然后线性表返回给前端
 
 **查看题目详情**
 
-通过id查看一个题目的具体信息，这时候要查询所有的信息让后分装实体类返回给前端
+通过id查看一个题目的具体信息，这时候要查询所有的信息让后分装实体类返回给前端。
 
 ## 前后端交互分析
 
@@ -69,11 +97,25 @@ create table problem(
 
 ### 获取题目列表
 
-力扣中获取题目的方式有两种，一个是按页面查找，50个一页，其次是按照标签或者名字或者ID查找，这里我们只考虑全查找和id查找，使用动态SQL实现
+力扣中获取题目的方式有两种，一个是按页面查找，50个一页，其次是按照标签或者名字或者ID查找，这里我们只考虑全查找和id查找。
+
+其中全查找就是进入页面
+
+后端使用
+
+```java
+public List<Problem> selectAll(){
+    //code
+}
+```
+
+将结果封装成字符串返回
 
 ### 获取题目详情
 
 前端需要向后端传入一个合法的id
+
+后端显示一个题目所有信息（除了testCode字段）
 
 ### 提交代码到服务器
 
@@ -138,13 +180,13 @@ class Solution {
 
 如何实现？
 
-我们只需要找到提交代码最后一个'}'，然后将main方法嵌入其中，得到最终的代码。
+我们只需要找到**提交代码最后一个'}'，**然后将main方法嵌入其中，得到最终的代码。
 
 然后将代码交给编译运行模块处理
 
 ### 服务器返回运行结果
 
-对编译运行处理得到的编译错误或者结果进行处理返回
+对编译运行处理得到的编译错误或者结果进行处理返回。
 
 ## 编译运行模块
 
@@ -233,5 +275,112 @@ public class Answer{
     private String stderr;
     //set和set方法
 }
+```
+
+# bug-free
+
+当提交的代码为
+
+```java
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> hashtable = new HashMap<Integer, Integer>();
+        for (int i = 0; i < nums.length; ++i) {
+            if (hashtable.containsKey(target - nums[i])) {
+                return new int[]{hashtable.get(target - nums[i]), i};
+            }
+            hashtable.put(nums[i], i);
+        }
+        return new int[0];
+    }
+}
+```
+
+时报错,浏览器提示页面
+
+```
+.\tmp\03a49a9e-b943-4c51-bb83-1dea3d07370e\Solution.java:3: ����: �Ҳ�������
+        Map hashtable = new HashMap();
+        ^
+  ����:   �� Map
+  λ��: �� Solution
+.\tmp\03a49a9e-b943-4c51-bb83-1dea3d07370e\Solution.java:3: ����: �Ҳ�������
+        Map hashtable = new HashMap();
+                                              ^
+  ����:   �� HashMap
+  λ��: �� Solution
+2 ������
+```
+
+查看源代码以及文件信息
+
+```java
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> hashtable = new HashMap<Integer, Integer>();
+        for (int i = 0; i < nums.length; ++i) {
+            if (hashtable.containsKey(target - nums[i])) {
+                return new int[]{hashtable.get(target - nums[i]), i};
+            }
+            hashtable.put(nums[i], i);
+        }
+        return new int[0];
+    }
+    public static void main(String[] args) {
+        Solution solution=new Solution();
+        int[] num1=new int[]{2,7,11,15};
+        int[] ret1=solution.twoSum(num1,9);
+        int[] ans1={0,1};
+        boolean isTrue1=solution.isSame(ans1,ret1);
+        if(isTrue1){
+            System.out.println("case1 is Ok");
+        }else{
+            System.out.println("case1 is failed");
+            System.exit(0);
+        }
+        int[] num2=new int[]{3,2,4};
+        int[] ret2=solution.twoSum(num2,6);
+        int[] ans2={1,2};
+        boolean isTrue2=solution.isSame(ans2,ret2);
+        if(isTrue2){
+            System.out.println("case2 is Ok");
+        }else{
+            System.out.println("case2 is failed");
+            System.exit(0);
+        }
+        int[] num3=new int[]{3,3};
+        int[] ret3=solution.twoSum(num2,6);
+        int[] ans3={1,2};
+        boolean isTrue3=solution.isSame(ans3,ret3);
+        if(isTrue3){
+            System.out.println("case3 is Ok");
+        }else{
+            System.out.println("case3 is failed");
+            System.exit(0);
+        }
+        System.out.println("All Yes");
+    }
+    private boolean isSame(int[] arr1,int[] arr2){
+        if(arr1.length!=arr2.length){
+            return false;
+        }
+        for(int i=0;i<arr1.length;i++){
+            if(arr1[i]!=arr2[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+```
+
+发现**没有对包进行导入**
+
+需要一个前缀字符串进行导入一个必要的包，这个在前端可以有解题者自己导入，也可以在后端嵌入时导入
+
+不过考虑到对牛客不能自动导入包的深恶痛绝，这里在后端默认导入一个包
+
+```java
+import java.util.*;
 ```
 

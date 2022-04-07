@@ -1,0 +1,10 @@
+.\tmp\a37fc86e-95d5-49c9-b8a6-9b456c67002f\Solution.java:6: 错误: 非法的类型开始
+null
+^
+.\tmp\a37fc86e-95d5-49c9-b8a6-9b456c67002f\Solution.java:6: 错误: 需要';'
+null
+    ^
+.\tmp\a37fc86e-95d5-49c9-b8a6-9b456c67002f\Solution.java:7: 错误: 解析时已到达文件结尾
+}
+ ^
+3 个错误

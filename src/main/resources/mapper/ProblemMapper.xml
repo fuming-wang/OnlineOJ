@@ -13,6 +13,17 @@
         insert into problem (title,level,description,templateCode,testCode)
         values (#{title},#{level},#{description},#{templateCode},#{testCode})
     </insert>
+    <update id="update">
+        update problem
+            <trim prefix="set" prefixOverrides=",">
+                <if test="title!=null">, title=#{title}</if>
+                <if test="level!=null">, level=#{level}</if>
+                <if test="description!=null">, description=#{description}</if>
+                <if test="templateCode!=null">, templateCode=#{templateCode}</if>
+                <if test="testCode!=null">, testCode=#{testCode}</if>
+            </trim>
+        where id=#{id}
+    </update>
     <select id="selectOne" resultType="com.example.onlineoj.model.Problem">
         select id,title,level,description,templateCode from problem where id=#{id}
     </select>

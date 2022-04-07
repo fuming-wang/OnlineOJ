@@ -1,5 +1,6 @@
 package com.example.onlineoj.dao;
 
+import com.example.onlineoj.component.FileUtil;
 import com.example.onlineoj.model.Problem;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +29,17 @@ class ProblemMapperTest {
                 "\n" +
                 "你可以按任意顺序返回答案。\n" +
                 "\n");
+
         problem.setTemplateCode("class Solution {\n" +
                 "    public int[] twoSum(int[] nums, int target) {\n" +
                 "\n" +
                 "    }\n" +
                 "}");
+
         problem.setTestCode("    public static void main(String[] args) {\n" +
                 "        \n" +
                 "    }");
+
         problemMapper.add(problem);
         problem.setTitle("两数之加");
         problem.setLevel("中等");
@@ -79,5 +83,21 @@ class ProblemMapperTest {
         for(Problem p:list){
             System.out.println(p);
         }
+    }
+
+
+    @Test
+    void selectOneInDetail() {
+        Problem problem=problemMapper.selectOneInDetail(1);
+        System.out.println(problem);
+    }
+
+    @Test
+    void update() {
+        Integer id=3;
+        Problem problem=new FileUtil().getProblemFromFile(id);
+        problem.setId(id);
+        int ret=problemMapper.update(problem);
+        System.out.println(ret);
     }
 }

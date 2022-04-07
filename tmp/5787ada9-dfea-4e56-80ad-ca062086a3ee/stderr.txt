@@ -1,0 +1,3 @@
+Exception in thread "main" java.lang.NullPointerException
+	at Solution.isSame(Solution.java:42)
+	at Solution.main(Solution.java:12)
