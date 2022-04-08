@@ -1,4 +1,0 @@
-10
-case1 is Ok
-10
-case2 is failed

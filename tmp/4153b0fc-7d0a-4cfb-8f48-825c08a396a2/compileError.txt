@@ -1,3 +1,0 @@
-javac: 找不到文件: .\tmp\4153b0fc-7d0a-4cfb-8f48-825c08a396a2\Solution.java
-用法: javac <options> <source files>
--help 用于列出可能的选项
