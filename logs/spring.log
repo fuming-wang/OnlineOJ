@@ -1,0 +1,67 @@
+2022-04-08 12:04:41.656  INFO 10428 --- [restartedMain] c.example.onlineoj.OnlineOjApplication   : Starting OnlineOjApplication using Java 1.8.0_192 on HONOR-MAGICBOOK with PID 10428 (D:\Github\OnlineOJ\target\classes started by wangfuming in D:\Github\OnlineOJ)
+2022-04-08 12:04:41.662  INFO 10428 --- [restartedMain] c.example.onlineoj.OnlineOjApplication   : No active profile set, falling back to 1 default profile: "default"
+2022-04-08 12:04:41.827  INFO 10428 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-04-08 12:04:41.828  INFO 10428 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-04-08 12:04:44.118  INFO 10428 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-04-08 12:04:44.137  INFO 10428 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-04-08 12:04:44.138  INFO 10428 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.60]
+2022-04-08 12:04:44.333  INFO 10428 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-04-08 12:04:44.333  INFO 10428 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2503 ms
+2022-04-08 12:04:45.850  INFO 10428 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2022-04-08 12:04:46.073  INFO 10428 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-04-08 12:04:46.142  INFO 10428 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-04-08 12:04:46.163  INFO 10428 --- [restartedMain] c.example.onlineoj.OnlineOjApplication   : Started OnlineOjApplication in 5.614 seconds (JVM running for 8.62)
+2022-04-08 12:04:58.024  INFO 10428 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-08 12:04:58.025  INFO 10428 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-04-08 12:04:58.028  INFO 10428 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2022-04-08 12:04:58.707  INFO 10428 --- [http-nio-8080-exec-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-04-08 12:04:58.943  INFO 10428 --- [http-nio-8080-exec-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-04-08 12:06:13.591  INFO 10428 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-04-08 12:06:13.600  INFO 10428 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-04-08 12:06:19.620  INFO 2676 --- [restartedMain] c.example.onlineoj.OnlineOjApplication   : Starting OnlineOjApplication using Java 1.8.0_192 on HONOR-MAGICBOOK with PID 2676 (D:\Github\OnlineOJ\target\classes started by wangfuming in D:\Github\OnlineOJ)
+2022-04-08 12:06:19.622  INFO 2676 --- [restartedMain] c.example.onlineoj.OnlineOjApplication   : No active profile set, falling back to 1 default profile: "default"
+2022-04-08 12:06:19.677  INFO 2676 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-04-08 12:06:19.677  INFO 2676 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-04-08 12:06:20.753  INFO 2676 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-04-08 12:06:20.762  INFO 2676 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-04-08 12:06:20.763  INFO 2676 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.60]
+2022-04-08 12:06:20.851  INFO 2676 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-04-08 12:06:20.851  INFO 2676 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1174 ms
+2022-04-08 12:06:21.330  INFO 2676 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2022-04-08 12:06:21.434  INFO 2676 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-04-08 12:06:21.470  INFO 2676 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-04-08 12:06:21.481  INFO 2676 --- [restartedMain] c.example.onlineoj.OnlineOjApplication   : Started OnlineOjApplication in 2.247 seconds (JVM running for 3.007)
+2022-04-08 12:06:24.289  INFO 2676 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-08 12:06:24.289  INFO 2676 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-04-08 12:06:24.290  INFO 2676 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-04-08 12:06:29.096  INFO 2676 --- [http-nio-8080-exec-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-04-08 12:06:29.221  INFO 2676 --- [http-nio-8080-exec-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-04-08 12:07:19.914 ERROR 2676 --- [http-nio-8080-exec-5] com.example.onlineoj.component.Task      : ./tmp/99af9bf2-b488-479c-a60f-29a5c5bea498/Solution.java
+ error:1
+.\tmp\99af9bf2-b488-479c-a60f-29a5c5bea498\Solution.java:6: ����: ȱ�ٷ������
+    }
+    ^
+1 ������
+
+2022-04-08 12:07:40.422  INFO 2676 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-04-08 12:07:40.433  INFO 2676 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-04-08 18:28:49.525  INFO 13556 --- [restartedMain] c.example.onlineoj.OnlineOjApplication   : Starting OnlineOjApplication using Java 1.8.0_192 on HONOR-MAGICBOOK with PID 13556 (D:\Github\OnlineOJ\target\classes started by wangfuming in D:\Github\OnlineOJ)
+2022-04-08 18:28:49.532  INFO 13556 --- [restartedMain] c.example.onlineoj.OnlineOjApplication   : No active profile set, falling back to 1 default profile: "default"
+2022-04-08 18:28:49.623  INFO 13556 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-04-08 18:28:49.624  INFO 13556 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-04-08 18:28:50.952  INFO 13556 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-04-08 18:28:50.960  INFO 13556 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-04-08 18:28:50.960  INFO 13556 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.60]
+2022-04-08 18:28:51.043  INFO 13556 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-04-08 18:28:51.044  INFO 13556 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1419 ms
+2022-04-08 18:28:51.579  INFO 13556 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2022-04-08 18:28:51.693  INFO 13556 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-04-08 18:28:51.724  INFO 13556 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-04-08 18:28:51.733  INFO 13556 --- [restartedMain] c.example.onlineoj.OnlineOjApplication   : Started OnlineOjApplication in 3.024 seconds (JVM running for 5.312)
+2022-04-08 18:28:53.665  INFO 13556 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-08 18:28:53.665  INFO 13556 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-04-08 18:28:53.666  INFO 13556 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-04-08 18:28:58.900  INFO 13556 --- [http-nio-8080-exec-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-04-08 18:28:59.028  INFO 13556 --- [http-nio-8080-exec-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-04-08 18:34:56.029  INFO 13556 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-04-08 18:34:56.035  INFO 13556 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
