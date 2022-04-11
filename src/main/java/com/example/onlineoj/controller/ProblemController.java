@@ -5,7 +5,6 @@ import com.example.onlineoj.component.FileUtil;
 import com.example.onlineoj.component.Task;
 import com.example.onlineoj.dao.ProblemMapper;
 import com.example.onlineoj.model.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +16,6 @@ public class ProblemController {
     private final ProblemMapper problemMapper;
     private final Task task;
     private final FileUtil fileUtil;
-    @Autowired
     public ProblemController(ProblemMapper problemMapper, Task task, FileUtil fileUtil) {
         this.problemMapper = problemMapper;
         this.task = task;
@@ -30,23 +28,26 @@ public class ProblemController {
             return "id错误";
         }
         Problem problem=fileUtil.getProblemFromFile(id);
-        problem.setId(id);
         if(problem==null){
             return "确认文件是否存在";
         }
+        problem.setId(id);
         int ret=problemMapper.update(problem);
         if(ret>0){
-            return "成功";
+            return "成功,请点击回退";
         }else{
-            return "失败";
+            return "失败,请点击回退";
         }
     }
-
     @ResponseBody
     @RequestMapping("/user/submit")
     public Object addProblem(Integer id){
         if(id==null) {
-            return "id错误";
+            return "id错误,请返回重试";
+        }
+        Problem isAdmitUpload=problemMapper.selectOne(id);
+        if(isAdmitUpload!=null){
+            return "该题目已经存在，如果需要请点击修改";
         }
         Problem problem=fileUtil.getProblemFromFile(id);
         if(problem==null){
@@ -54,9 +55,9 @@ public class ProblemController {
         }
         int ret=problemMapper.add(problem);
         if(ret>0){
-            return "成功";
+            return "成功上传一个题目";
         }else{
-            return "失败";
+            return "失败,原因未知";
         }
     }
     @ResponseBody
@@ -93,7 +94,6 @@ public class ProblemController {
             Question question = new Question();
             question.setCode(finalCode);
             Answer answer = task.run(question);
-            System.out.println(answer);
             compileResponse.error = answer.getError();
             if(compileResponse.error==0){
                 compileResponse.stdout=answer.getStdout();
@@ -104,6 +104,7 @@ public class ProblemController {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return compileResponse;
     }

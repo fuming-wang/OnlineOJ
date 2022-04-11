@@ -12,7 +12,7 @@ public class AppConfig implements WebMvcConfigurer {
         System.out.println("拦截器启动");
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/user/**")
-                .addPathPatterns("/test.html");
+                .addPathPatterns("/admin.html");
 
     }
 }

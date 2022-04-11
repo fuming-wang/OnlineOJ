@@ -40,13 +40,10 @@ public class Task {
                 answer.setError(1);
                 answer.setCompileErr("文件操作异常");
                 return answer;
-            }else{
-                return null;
             }
         }
         fileUtil.writeFile(CODE, question.getCode());
         String compileCmd=String.format("javac -encoding utf8 %s -d %s", CODE, WORK_DIR);
-        System.out.println(compileCmd);
         command.run(compileCmd,null,COMPILE_ERROR);
         String compileErrMsg=fileUtil.readFile(COMPILE_ERROR);
         if(compileErrMsg.length()>0){
@@ -57,7 +54,6 @@ public class Task {
             return answer;
         }
         String runCmd = String.format("java -classpath %s %s", WORK_DIR, CLASS);
-        System.out.println(runCmd);
         command.run(runCmd,STDOUT,STDERR);
         String runErrMsg=fileUtil.readFile(STDERR);
         if(runErrMsg.length()>0){
