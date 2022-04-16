@@ -85,6 +85,11 @@ public class ProblemController {
             }
             String testCode = problem.getTestCode();
             String requestCode = compileRequest.code;
+            if(!task.checkCodeSafe(requestCode)){
+                compileResponse.error = 3;
+                compileResponse.reason = "提交代码存在非法控制代码,终止运行,请输入题解相关代码";
+                throw new Exception("恶意代码");
+            }
             String finalCode = mergeCode(requestCode, testCode);
             if (finalCode == null) {
                 compileResponse.error = 3;

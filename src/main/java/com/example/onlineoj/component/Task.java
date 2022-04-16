@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -66,5 +68,24 @@ public class Task {
         answer.setError(0);
         answer.setStdout(fileUtil.readFile(STDOUT));
         return answer;
+    }
+
+    public boolean checkCodeSafe(String code) {
+        List<String> blackList = new ArrayList<>();
+        // 防止提交的代码运行恶意程序
+        blackList.add("Runtime");
+        blackList.add("exec");
+        // 禁止提交的代码读写文件
+        blackList.add("java.io");
+        // 禁止提交的代码访问网络
+        blackList.add("java.net");
+        for (String target : blackList) {
+            int pos = code.indexOf(target);
+            if (pos >= 0) {
+                // 找到任意的恶意代码特征, 返回 false 表示不安全
+                return false;
+            }
+        }
+        return true;
     }
 }
