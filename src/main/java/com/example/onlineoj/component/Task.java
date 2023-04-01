@@ -44,7 +44,9 @@ public class Task {
                 return answer;
             }
         }
+        // 代码写入Solution.java文件中
         fileUtil.writeFile(CODE, question.getCode());
+        // 使用javac命令编译
         String compileCmd=String.format("javac -encoding utf8 %s -d %s", CODE, WORK_DIR);
         command.run(compileCmd,null,COMPILE_ERROR);
         String compileErrMsg=fileUtil.readFile(COMPILE_ERROR);
@@ -55,6 +57,7 @@ public class Task {
             answer.setCompileErr(compileErrMsg);
             return answer;
         }
+        // 使用java命令运行
         String runCmd = String.format("java -classpath %s %s", WORK_DIR, CLASS);
         command.run(runCmd,STDOUT,STDERR);
         String runErrMsg=fileUtil.readFile(STDERR);

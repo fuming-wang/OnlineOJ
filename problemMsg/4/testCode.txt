@@ -1,0 +1,54 @@
+    private List<String[]> getDatebases(){
+        List<String[]> list = new ArrayList<>();
+        list.add(new String[]{"1","2","2"});
+        list.add(new String[]{"20","3","60"});
+        list.add(new String[]{"4","7","28"});
+        list.add(new String[]{"0","3","0"});
+        list.add(new String[]{"0","334234234","0"});
+        list.add(new String[]{"2231421","0","0"});
+        list.add(new String[]{"123","3","369"});
+        list.add(new String[]{"2","111","222"});
+        list.add(new String[]{"12","12","144"});
+        list.add(new String[]{"2","3","6"});
+        list.add(new String[]{"12","3","36"});
+        list.add(new String[]{"25","25","625"});
+        list.add(new String[]{"25","25","625"});
+        list.add(new String[]{"25","25","625"});
+        list.add(new String[]{"25","25","625"});
+        list.add(new String[]{"25","25","625"});
+        list.add(new String[]{"25","25","625"});
+        list.add(new String[]{"85","88","7480"});
+        list.add(new String[]{"47","13","611"});
+        list.add(new String[]{"54","4","216"});
+        list.add(new String[]{"34","6","204"});
+        list.add(new String[]{"78","48","3744"});
+        list.add(new String[]{"69","73","5037"});
+        list.add(new String[]{"17","63","1071"});
+        list.add(new String[]{"25","25","625"});
+        list.add(new String[]{"62","34","2108"});
+        list.add(new String[]{"92","62","5704"});
+        list.add(new String[]{"96","89","8544"});
+        list.add(new String[]{"10","25","250"});
+        return list;
+    }
+    public static void main(String[] args) {
+
+        Solution solution = new Solution();
+        List<String[]> testDatabases = solution.getDatebases();
+        int i = 0;
+        long start = System.currentTimeMillis();
+        for(; i < testDatabases.size();i++){
+            String[] s = testDatabases.get(i);
+            String tmp = solution.multiply(s[0],s[1]);
+            if(!tmp.equals(s[2])) {
+                System.out.println("case " + i + " is failed");
+                System.out.println("Last Input: " + s[0] + " and " +s[1] + "\n Answer:   " + s[2] +  "\nYour Answer is: " + tmp);
+                break;
+            }
+        }
+        if(i == testDatabases.size()){
+            System.out.println("All Yes");
+            long time = System.currentTimeMillis() - start;
+            System.out.println("Program running time is "+time+ " ms");
+        }
+    }

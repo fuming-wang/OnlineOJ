@@ -1,0 +1,51 @@
+    public static void main(String[] args) {
+        Solution solution=new Solution();
+        List<int[]> test=solution.getTestEg2321();
+        List<Integer> target=solution.getTarget123();
+        List<int[]> answer=solution.getAnswer21321();
+        int sum=0;
+        Long begin=System.currentTimeMillis();
+        for(int i=0;i< target.size();i++){
+            int[] ret=solution.twoSum(test.get(i), target.get(i) );
+            Arrays.sort(ret);
+            if(Arrays.equals(answer.get(i), ret)){
+                sum++;
+            }else{
+                System.out.println("Pass: "+sum+"/"+test.size());
+                System.out.println("Last Input:"+ Arrays.toString(test.get(i))+" and target="+target.get(i));
+                System.out.println("Answer:"+ Arrays.toString(answer.get(i)));
+                System.out.println("Your Answer:"+ Arrays.toString(ret));
+	      System.exit(0);
+            }
+        }
+        Long end=System.currentTimeMillis();
+        System.out.println(target.size()+"/"+target.size()+" All Yes");
+        System.out.println("Time:"+(end-begin));
+    }
+    private List<int[]> getTestEg2321(){
+        List<int[]> ans=new ArrayList<>();
+        ans.add(new int[]{2,7,11,5});
+        ans.add(new int[]{3,2,4});
+        ans.add(new int[]{3,3});
+        ans.add(new int[]{1,2,3,4});
+        ans.add(new int[]{1,2,34,5,6,3,79,12});
+        return ans;
+    }
+    private List<Integer> getTarget123(){
+        List<Integer> ans=new ArrayList<>();
+        ans.add(9);
+        ans.add(6);
+        ans.add(6);
+        ans.add(7);
+        ans.add(15);
+        return ans;
+    }
+    private List<int[]> getAnswer21321(){
+        List<int[]> ans=new ArrayList<>();
+        ans.add(new int[]{0,1});
+        ans.add(new int[]{1,2});
+        ans.add(new int[]{0,1});
+        ans.add(new int[]{2,3});
+        ans.add(new int[]{5,7});
+        return ans;
+    }

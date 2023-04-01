@@ -12,7 +12,8 @@ import java.io.IOException;
 @Component
 public class FileUtil {
     public Problem getProblemFromFile(int id){
-        String path="/root/my-app/Online_Oj/problemMsg/"+id+"/";
+//        String path="/root/my-app/Online_Oj/problemMsg/"+id+"/";  // linux服务器使用这个
+        String path = "D:/Github/OnlineOJ/problemMsg/" + id + "/"; // windows使用这个
         File file=new File(path);
         if(!file.exists()){
             return null;

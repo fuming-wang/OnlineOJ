@@ -1,0 +1,98 @@
+    static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode() {
+        }
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
+    public static void main(String[] args) {
+        Solution solution=new Solution();
+        List<ListNode> l1=solution.getList1();
+        List<ListNode> l2=solution.getList2();
+        List<ListNode> a1=solution.getAnswer();
+        int sum=0;
+        long begin=System.currentTimeMillis();
+        for(int i=0;i<l1.size();i++){
+            ListNode ans=solution.addTwoNumbers(l1.get(i),l2.get(i));
+            if(solution.isSame(ans,a1.get(i))){
+                sum++;
+            }else {
+                System.out.println("Pass: "+sum+"/"+a1.size());
+                System.out.println("Last Input1:"+solution.ListNodeToString(l1.get(i)));
+                System.out.println("Last Input2:"+solution.ListNodeToString(l2.get(i)));
+                System.out.println("Answer:"+ solution.ListNodeToString(a1.get(i)));
+                System.out.println("Your Answer:"+ solution.ListNodeToString(ans));
+                System.exit(0);
+            }
+        }
+        long end=System.currentTimeMillis();
+        System.out.println("Time:"+(end-begin));
+    }
+    private String ListNodeToString(ListNode head){
+        if(head==null) {
+            return "[]";
+        }
+        StringBuilder sb=new StringBuilder();
+        sb.append('[');
+        while(head!=null){
+            sb.append(head.val);
+            sb.append(',');
+            head=head.next;
+        }
+        sb.deleteCharAt(sb.length()-1);
+        sb.append(']');
+        return sb.toString();
+    }
+    private boolean isSame(ListNode head1,ListNode head2){
+        while(head1!=null&&head2!=null){
+            if(head1.val!=head2.val){
+                return false;
+            }
+            head1=head1.next;
+            head2=head2.next;
+        }
+        return head1==null&&head2==null;
+    }
+    private List<ListNode> getList1(){
+        List<ListNode> ans=new ArrayList<>();
+        ans.add(arrToList(new int[]{2,4,3}));
+        ans.add(arrToList(new int[]{0}));
+        ans.add(arrToList(new int[]{9,9,9,9,9,9,9}));
+        ans.add(arrToList(new int[]{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1}));
+        return ans;
+    }
+    private List<ListNode> getList2(){
+        List<ListNode> ans=new ArrayList<>();
+        ans.add(arrToList(new int[]{5,6,4}));
+        ans.add(arrToList(new int[]{0}));
+        ans.add(arrToList(new int[]{9,9,9,9}));
+        ans.add(arrToList(new int[]{9,9,9,1,1,4,5}));
+        return ans;
+    }
+    private List<ListNode> getAnswer(){
+        List<ListNode> ans=new ArrayList<>();
+        ans.add(arrToList(new int[]{7,0,8}));
+        ans.add(arrToList(new int[]{0}));
+        ans.add(arrToList(new int[]{8,9,9,9,0,0,0,1}));
+        ans.add(arrToList(new int[]{0,0,0,2,1,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1}));
+        return ans;
+    }
+    private ListNode arrToList(int[] arr){
+        ListNode head=new ListNode(arr[0]);
+        ListNode p=head;
+        for(int i=1;i<arr.length;i++){
+            p.next=new ListNode(arr[i]);
+            p=p.next;
+        }
+        return head;
+    }

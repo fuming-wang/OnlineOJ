@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.onlineoj.dao.TimeMapper">
+    <resultMap id="BaseMapResult" type="com.example.onlineoj.model.Time">
+        <id column="id" property="id"/>
+        <id column="duration" property="duration"/>
+        <id column="cnt" property="cnt"/>
+    </resultMap>
+
+    <select id="selectById" resultType="com.example.onlineoj.model.Time">
+        select * from time where id = #{id} and duration = #{duration}
+    </select>
+
+    <select id="selectMin" resultType="integer">
+        select COUNT(cnt) from time where id = #{id} and #{duration} > duration
+    </select>
+
+    <select id="selectMax" resultType="integer">
+        select COUNT(cnt) from time where id = #{id} and duration > #{duration}
+    </select>
+
+    <update id="update">
+        update time
+        <trim prefix="set" prefixOverrides=",">
+            <if test="cnt!=null">, cnt=#{cnt}</if>
+        </trim>
+        where id=#{id} and duration = #{duration}
+    </update>
+
+    <insert id="add">
+        insert into time (id,duration,cnt)
+        values (#{id},#{duration},1)
+    </insert>
+</mapper>
